@@ -40,7 +40,7 @@ float RoutePlanner::CalculateHValue(RouteModel::Node const *node) {
 
 void RoutePlanner::AddNeighbors(RouteModel::Node *current_node) {
     current_node->FindNeighbors();
-    current_node->visited = true;
+    //current_node->visited = true;
     
     for(RouteModel::Node *i: current_node->neighbors) {
         i->parent = current_node;
@@ -121,6 +121,8 @@ void RoutePlanner::AStarSearch() {
     RouteModel::Node *current_node = nullptr;
     cout << "starting search .. \n";
     current_node = this->start_node;
+    open_list.push_back(current_node);
+    current_node->visited = true;
 
     do {
         AddNeighbors(current_node);
